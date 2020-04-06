@@ -13,7 +13,8 @@ args=sys.argv[1:]
 #print(args)
 image = cv2.imread(args[0])
 
-image = imutils.resize(image, width=500)
+image = imutils.resize(image, width=500,height=500)
+#image=image[100:400, 100:400]
 
 cv2.imshow("Original Image", image)
 
@@ -46,7 +47,7 @@ cv2.namedWindow("Final_image",cv2.WINDOW_NORMAL)
 cv2.imshow("Final_image",new_image)
 
 
-config = ('-l eng --oem 1 --psm 3')
+config = ('-l eng --oem 1 --psm 7')
 
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
@@ -67,6 +68,6 @@ raw_data = {'date': [time.asctime( time.localtime(time.time()) )],
 df = pd.DataFrame(raw_data, columns = ['date', 'number plate'])
 df.to_csv('data.csv')
 
-#cv2.waitKey(0)
+cv2.waitKey(0)
 cv2.destroyAllWindows()
 exit()
