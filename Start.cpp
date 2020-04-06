@@ -26,52 +26,24 @@
 
 using namespace std;
 
-int i=0;
-
-// char files[50][30];
-// void directory();
-// void directory()
-// { 
-//     // const char str[10]=".";
-//     // DIR *dir;
-//     // struct dirent *ent;
-
-//     // if ((dir = opendir (str)) != NULL)
-//     // {
-//     //     // print all the files and directories within directory
-//     //     while ((ent = readdir (dir)) != NULL)
-//     //     {
-//     //         sprintf(files[i++],"%s \\ ",ent->d_name); 
-//     //         //printf("%s \n",ent->d_name);  
-//     //     }
-//     //     closedir (dir);
-//     // }
-//     // else
-//     // {
-//     //     cout<<"could not open directory";
-//     //     perror ("");
-//     // }
-
-//     getch();
-// }
-
 int main()
 {
     //directory();
     char line[50]; 
     char cmd[70];
-    system("DIR .\\*.jpg /B > file.txt");
+    // system("cd > cwd.txt");
+    system("DIR *.jpg /B > jpgfiles.txt");
     fstream file;
-    file.open("fil.txt",ios::in);
-    // while(file)
-    // {   
-        strcpy(cmd," python test_image.py  ");
+    file.open("jpgfiles.txt",ios::in|ios::out);
+    while(file)
+    {   
+        strcpy(cmd," python test_image.py ");
         file>>line;
         //cout<<line<<endl;
         strcat(cmd,line);
         cout<<cmd<<endl;
         system(cmd);
-    // }
+    }
     file.close();
 
 }

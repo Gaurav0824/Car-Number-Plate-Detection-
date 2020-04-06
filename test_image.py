@@ -9,7 +9,9 @@ import pytesseract
 import pandas as pd
 import time
 
-image = cv2.imread('13.jpg')
+args=sys.argv[1:]
+#print(args)
+image = cv2.imread(args[0])
 
 image = imutils.resize(image, width=500)
 
@@ -51,11 +53,11 @@ pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tessera
 text = pytesseract.image_to_string(new_image, config=config)
 print(text)
 
-cobj=open("File.txt",'ab+')
+cobj=open("File.txt",'a+')
 clist=[]
 clist.append(text)
 #print(clist)
-dump(clist, cobj)
+cobj.write(clist.pop()+"\t"+args[0]+"\n")
 cobj.close
 
 
@@ -65,4 +67,6 @@ raw_data = {'date': [time.asctime( time.localtime(time.time()) )],
 df = pd.DataFrame(raw_data, columns = ['date', 'number plate'])
 df.to_csv('data.csv')
 
-cv2.waitKey(0)
+#cv2.waitKey(0)
+cv2.destroyAllWindows()
+exit()
